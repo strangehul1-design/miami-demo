@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Банкеты в кафе «Майами» — Тобольск</title>
+<meta name="description" content="Кафе «Майами», Тобольск. Соберите банкет из меню с реальными ценами, посмотрите сумму на гостя и оставьте заявку.">
+<meta name="theme-color" content="#F7F3EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#F7F3EC;
+  --paper:#FFFFFF;
+  --deep:#0B3B45;
+  --deep2:#12505C;
+  --lagoon:#1C8C8C;
+  --coral:#E4572E;
+  --sun:#EFB03C;
+  --line:#DED5C6;
+  --muted:#6E6A61;
+  --disp:Unbounded,system-ui,sans-serif;
+  --sans:Manrope,system-ui,sans-serif;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --t:.26s;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--sand);color:var(--deep);
+  font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;letter-spacing:-.02em;line-height:1.12}
+p{margin:0}
+button{font:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding-left:26px;padding-right:26px}
+.lab{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--lagoon)}
+.dim{color:var(--muted)}
+
+/* пальмовая линия */
+.palm{display:block;width:100%;height:40px;opacity:.5}
+.palm path{stroke:var(--line);stroke-width:1.4;fill:none}
+
+/* ─── шапка ─── */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(247,243,236,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hdr__in{display:flex;align-items:center;gap:18px;height:74px}
+.logo{font-family:var(--disp);font-weight:600;font-size:22px;letter-spacing:.08em}
+.logo span{color:var(--lagoon)}
+.hdr .meta{font-size:14px;color:var(--muted)}
+.hdr .tel{margin-left:auto;font-weight:700;font-size:16px;white-space:nowrap}
+
+/* ─── герой ─── */
+.hero{padding:62px 0 40px}
+.hero h1{font-size:clamp(34px,5vw,62px);max-width:17ch}
+.hero h1 em{font-style:normal;color:var(--lagoon)}
+.hero p.sub{margin-top:20px;max-width:52ch;font-size:18px;color:var(--muted)}
+.occ{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
+.occ button{
+  border:1px solid var(--line);background:var(--paper);color:var(--deep);
+  border-radius:999px;padding:12px 20px;font-weight:600;font-size:15px;
+  transition:background var(--t) var(--ease),color var(--t) var(--ease),border-color var(--t) var(--ease);
+}
+.occ button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:var(--sand)}
+
+/* карточка повода */
+.scene{
+  margin-top:26px;background:var(--paper);border:1px solid var(--line);
+  border-radius:200px 200px 28px 28px;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.scene__txt{padding:56px 40px 40px}
+.scene__txt h2{font-size:28px}
+.scene__txt p{margin-top:12px;color:var(--muted);font-size:16px}
+.scene ul{list-style:none;margin:20px 0 0;padding:0}
+.scene li{display:flex;gap:10px;padding:7px 0;font-size:16px;border-bottom:1px solid var(--line)}
+.scene li b{margin-left:auto;font-weight:700;white-space:nowrap}
+.scene__img{background:var(--line) center/cover no-repeat;min-height:380px}
+
+/* ─── калькулятор ─── */
+.calc{display:grid;grid-template-columns:1fr 330px;gap:26px;align-items:start;margin-top:26px}
+.menu{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:8px 24px 24px}
+.grp{border-bottom:1px solid var(--line)}
+.grp:last-child{border-bottom:none}
+.grp h3{font-size:17px;font-family:var(--sans);font-weight:700;padding:20px 0 10px}
+.it{display:flex;align-items:center;gap:14px;padding:9px 0}
+.it .nm{min-width:0;flex:1}
+.it .nm b{font-weight:600;font-size:16px}
+.it .nm span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.it .pr{font-weight:700;white-space:nowrap;font-size:15px}
+.add{
+  width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);
+  background:var(--sand);color:var(--deep);font-size:17px;line-height:1;
+  transition:background var(--t) var(--ease),color var(--t) var(--ease),border-color var(--t) var(--ease);
+}
+.qty{display:flex;align-items:center;gap:9px}
+.qty b{min-width:26px;text-align:center;font-weight:700;font-size:15px}
+.it.on .nm b{color:var(--lagoon)}
+
+.sum{position:sticky;top:94px;background:var(--deep);color:var(--sand);border-radius:28px;padding:26px}
+.sum .lab{color:rgba(247,243,236,.6)}
+.guests{display:flex;align-items:center;gap:12px;margin:12px 0 22px}
+.guests button{
+  width:40px;height:40px;border-radius:50%;border:1px solid rgba(247,243,236,.3);
+  background:none;color:var(--sand);font-size:19px;line-height:1;
+  transition:background var(--t) var(--ease),color var(--t) var(--ease);
+}
+.guests b{font-family:var(--disp);font-size:30px;font-weight:400;min-width:56px;text-align:center}
+.sum__rows div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(247,243,236,.16);font-size:15px}
+.sum__rows div:last-child{border-bottom:none}
+.sum__rows span{color:rgba(247,243,236,.6)}
+.sum__rows b{font-weight:700}
+.total{margin-top:18px;padding-top:16px;border-top:1px solid rgba(247,243,236,.3)}
+.total .big{font-family:var(--disp);font-size:34px;font-weight:400;color:var(--sun);line-height:1.1}
+.total .per{font-size:14px;color:rgba(247,243,236,.65);margin-top:5px}
+.btn{
+  width:100%;margin-top:18px;border:none;border-radius:999px;background:var(--coral);color:#fff;
+  padding:16px;font-weight:700;font-size:16px;
+  transition:filter var(--t) var(--ease),transform var(--t) var(--ease);
+}
+.btn[disabled]{background:rgba(247,243,236,.16);color:rgba(247,243,236,.45);cursor:not-allowed}
+.btn.light{background:var(--paper);color:var(--deep);border:1px solid var(--line)}
+
+/* ─── секции ─── */
+section{padding:56px 0}
+.head{max-width:60ch}
+.head h2{font-size:clamp(26px,3.4vw,40px)}
+.head h2 em{font-style:normal;color:var(--lagoon)}
+.head p{margin-top:13px;color:var(--muted)}
+.note{
+  border:1px dashed rgba(28,140,140,.45);border-radius:24px;padding:18px 22px;margin-top:24px;
+  font-size:15px;line-height:1.65;color:var(--muted);background:rgba(28,140,140,.05);
+}
+.note b{color:var(--lagoon)}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.card .in{padding:20px 22px 24px}
+.card h3{font-size:19px;font-family:var(--sans);font-weight:700}
+.card p{margin-top:8px;font-size:15px;color:var(--muted)}
+
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px}
+.fact{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:22px}
+.fact b{display:block;font-family:var(--disp);font-size:26px;font-weight:400;line-height:1.1}
+.fact span{display:block;margin-top:9px;font-size:14px;color:var(--muted)}
+
+.albums{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.albums a{
+  border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:11px 18px;font-size:15px;font-weight:600;
+  transition:border-color var(--t) var(--ease),color var(--t) var(--ease);
+}
+.albums a span{color:var(--muted);font-weight:500}
+
+/* ─── форма ─── */
+.form{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:28px;max-width:560px}
+label{display:block;margin-top:16px}
+label span{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+input,select{
+  width:100%;border:1px solid var(--line);border-radius:999px;background:var(--sand);
+  padding:13px 18px;font:400 16px var(--sans);color:var(--deep);
+  transition:border-color var(--t) var(--ease);
+}
+input:focus,select:focus{outline:none;border-color:var(--lagoon)}
+
+footer{background:var(--deep);color:rgba(247,243,236,.72);padding:48px 0 34px;font-size:15px;line-height:1.75}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:28px}
+.fgrid .logo{color:var(--sand);display:block;margin-bottom:12px}
+.fgrid .lab{display:block;margin-bottom:12px;color:rgba(247,243,236,.55)}
+.fgrid a{color:var(--sand)}
+.sign{margin-top:36px;padding-top:20px;border-top:1px solid rgba(247,243,236,.2);font-size:13px;color:rgba(247,243,236,.45);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.sign a{color:var(--sun)}
+
+dialog{border:none;border-radius:28px;padding:0;background:var(--sand);color:var(--deep);width:min(460px,calc(100vw - 32px))}
+dialog::backdrop{background:rgba(11,59,69,.45)}
+dialog[open]{animation:in var(--t) var(--ease)}
+@keyframes in{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.done{padding:32px}
+.done h3{font-size:25px;margin-top:10px}
+.recap{margin-top:20px;border-top:1px solid var(--line)}
+.recap div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.recap span{color:var(--muted)}
+.recap b{font-weight:700}
+
+@media (hover:hover) and (pointer:fine){
+  .add:hover{background:var(--lagoon);border-color:var(--lagoon);color:#fff}
+  .guests button:hover{background:rgba(247,243,236,.15)}
+  .btn:not([disabled]):hover{filter:brightness(1.06)}
+  .albums a:hover{border-color:var(--lagoon);color:var(--lagoon)}
+  .occ button:hover{border-color:var(--deep)}
+}
+@media (max-width:980px){
+  .scene,.calc,.cards,.facts,.fgrid{grid-template-columns:1fr}
+  .scene{border-radius:140px 140px 28px 28px}
+  .scene__img{min-height:260px;order:-1;border-radius:0}
+  .scene__txt{padding:32px 26px}
+  .sum{position:static}
+  .facts{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .wrap{padding-left:18px;padding-right:18px}
+  body{font-size:16px}
+  section{padding:42px 0}
+  .scene{border-radius:90px 90px 24px 24px}
+  .facts{grid-template-columns:1fr}
+  .menu{padding:4px 18px 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition-duration:.01ms!important}
+  dialog[open]{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr"><div class="wrap hdr__in">
+  <span class="logo">MIA<span>MI</span></span>
+  <span class="meta">Тобольск, Семёна Ремезова 97</span>
+  <a class="tel" href="tel:+79969468578">+7 996 946-85-78</a>
+</div></header>
+
+<div class="wrap hero">
+  <h1>Банкет, который можно посчитать <em>до звонка</em></h1>
+  <p class="sub">Свадьба, корпоратив, выпускной или детский праздник. Выберите повод, соберите стол из нашего меню - сумма и цена на гостя считаются сразу.</p>
+  <div class="occ" id="occ">
+    <button data-k="wed" aria-pressed="true">Свадьба</button>
+    <button data-k="corp" aria-pressed="false">Корпоратив</button>
+    <button data-k="grad" aria-pressed="false">Выпускной</button>
+    <button data-k="kids" aria-pressed="false">Детский праздник</button>
+  </div>
+
+  <div class="scene">
+    <div class="scene__txt">
+      <span class="lab" id="scLab">Повод</span>
+      <h2 id="scTtl"></h2>
+      <p id="scTxt"></p>
+      <ul id="scList"></ul>
+    </div>
+    <div class="scene__img" id="scImg"></div>
+  </div>
+</div>
+
+<svg class="palm" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 34h1200M140 34c0-10 8-18 18-18M158 16c-10-4-20 0-26 8M158 16c10-4 20 0 26 8M158 16c-2-10 4-18 14-20M1040 34c0-10-8-18-18-18M1022 16c10-4 20 0 26 8M1022 16c-10-4-20 0-26 8M1022 16c2-10-4-18-14-20"/>
+</svg>
+
+<!-- ───────── калькулятор ───────── -->
+<section class="wrap" id="calc">
+  <div class="head">
+    <h2>Соберите <em>свой стол</em></h2>
+    <p>Это меню зала с настоящими ценами. Нажимаете плюс - блюдо ставится на всех гостей сразу, как на банкете. Количество можно поправить.</p>
+  </div>
+
+  <div class="calc">
+    <div class="menu" id="menu"></div>
+
+    <aside class="sum">
+      <span class="lab">Гостей</span>
+      <div class="guests">
+        <button id="gm" aria-label="Меньше">−</button>
+        <b id="gN">20</b>
+        <button id="gp" aria-label="Больше">+</button>
+      </div>
+      <div class="sum__rows" id="rows">
+        <div><span>Блюд не выбрано</span><b>—</b></div>
+      </div>
+      <div class="total">
+        <span class="lab">Итого за стол</span>
+        <div class="big" id="tot">0 ₽</div>
+        <div class="per" id="per">выберите блюда</div>
+      </div>
+      <button class="btn" id="go" disabled>Оставить заявку</button>
+    </aside>
+  </div>
+
+  <div class="note">
+    <b>Честно про цены.</b> Все суммы взяты из вашего меню, снятого с альбома «Меню» - холодные закуски, салаты, супы, горячее, мангал, выпечка, напитки, десерты, бар. Банкетное меню у вас отдельное, его в открытом доступе нет, поэтому расчёт идёт по залу. Пришлёте банкетное - подставлю его, и цифра станет точной.
+  </div>
+</section>
+
+<!-- ───────── зал ───────── -->
+<section class="wrap">
+  <div class="head">
+    <h2>Зал и <em>кухня</em></h2>
+    <p>Русская, европейская и кавказская кухня. По желанию музыкальное сопровождение и караоке.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <img src="img/hall.jpg" alt="Накрытый банкетный зал" loading="lazy">
+      <div class="in"><h3>Зал к банкету</h3><p>Накрытые столы, танцпол, сцена для ведущего. Вместимость уточняется.</p></div>
+    </div>
+    <div class="card">
+      <img src="img/fish.jpg" alt="Тарелка рыбная" loading="lazy">
+      <div class="in"><h3>Тарелка рыбная, 650 ₽</h3><p>Форель слабосолёная, рыба масляная, лимон, маслины, зелень. 100 г.</p></div>
+    </div>
+    <div class="card">
+      <img src="img/grill.jpg" alt="Мясо с овощами на гриле" loading="lazy">
+      <div class="in"><h3>Мангал</h3><p>Шашлык от 420 ₽, люля-кебаб от 350 ₽, овощи на гриле 400 ₽. Подача порционно.</p></div>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>5,0</b><span>оценка гостей ВКонтакте</span></div>
+    <div class="fact"><b>4 911</b><span>подписчиков сообщества</span></div>
+    <div class="fact"><b>11:00-24:00</b><span>воскресенье - четверг</span></div>
+    <div class="fact"><b>11:00-02:00</b><span>пятница и суббота</span></div>
+  </div>
+</section>
+
+<!-- ───────── афиша ───────── -->
+<section class="wrap">
+  <div class="head">
+    <h2>Здесь уже <em>отмечали</em></h2>
+    <p>У вас есть альбомы по датам, но найти их может только тот, кто листает сообщество. На странице они становятся витриной - вот ссылки на ваши же альбомы.</p>
+  </div>
+  <div class="albums">
+    <a href="https://vk.ru/album-183827110_305577072">Корпоративы 2024 <span>31 фото</span></a>
+    <a href="https://vk.ru/album-183827110_306027787">Вечер встречи выпускников 01.02.2025 <span>16 фото</span></a>
+    <a href="https://vk.ru/album-183827110_303376928">Свадьба 04.07.24 <span>11 фото</span></a>
+    <a href="https://vk.ru/album-183827110_303308720">Выпускной школы №2 <span>14 фото</span></a>
+    <a href="https://vk.ru/album-183827110_302923093">Свадьба 21.05.24 <span>5 фото</span></a>
+  </div>
+  <div class="note">
+    <b>Фотографии с гостями я не переносил.</b> На снимках мероприятий узнаваемые люди, и размещать их на стороннем сайте без их согласия неправильно. В рабочей версии вы поставите те кадры, на которые у вас есть разрешение - здесь стоят только зал и блюда.
+  </div>
+</section>
+
+<!-- ───────── заявка ───────── -->
+<section class="wrap" id="req">
+  <div class="head">
+    <h2>Заявка на <em>дату</em></h2>
+    <p>Перезвоним и обсудим детали. Собранный стол приложится к заявке.</p>
+  </div>
+  <div class="form" style="margin-top:26px">
+    <label><span>Дата</span><input id="fd" type="date"></label>
+    <label><span>Повод</span><select id="fo">
+      <option>Свадьба</option><option>Корпоратив</option><option>Выпускной</option><option>Детский праздник</option><option>Другое</option>
+    </select></label>
+    <label><span>Гостей</span><input id="fg" type="text" inputmode="numeric" placeholder="20"></label>
+    <label><span>Имя</span><input id="fn" type="text" placeholder="Как к вам обращаться"></label>
+    <label><span>Телефон</span><input id="fp" type="tel" placeholder="+7"></label>
+    <button class="btn" id="send" style="background:var(--coral)">Отправить заявку</button>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div>
+      <span class="logo">MIA<span style="color:var(--sun)">MI</span></span>
+      Кафе и банкетный зал<br>
+      Тобольск, ул. Семёна Ремезова, 97
+    </div>
+    <div>
+      <span class="lab">Связь</span>
+      <a href="tel:+73456244434">8 (3456) 24-44-34</a><br>
+      <a href="tel:+79969468578">+7 996 946-85-78</a><br>
+      <a href="https://vk.ru/miami_tob">Сообщество ВКонтакте</a>
+    </div>
+    <div>
+      <span class="lab">Часы</span>
+      Воскресенье - четверг, 11:00-24:00<br>
+      Пятница и суббота, 11:00-02:00
+    </div>
+  </div>
+  <div class="sign">
+    <span>Черновой пример страницы. Собрал Арсений Асянов, «Digital для бизнеса»</span>
+    <a href="https://strangehul1-design.github.io/web-chef-portfolio/ru/">портфолио</a>
+  </div>
+</div></footer>
+
+<dialog id="dlg">
+  <div class="done">
+    <span class="lab" style="color:var(--coral)">Заявка принята</span>
+    <h3 id="dTtl">Спасибо, записали</h3>
+    <div class="recap" id="dRecap"></div>
+    <button class="btn light" onclick="document.querySelector('#dlg').close()">Закрыть</button>
+  </div>
+</dialog>
+
+<script>
+/* FORM_CONFIG - в рабочей версии заявка уходит в Telegram кафе. В демо форма ничего не отправляет. */
+const FORM_CONFIG = { mode:"demo", telegram_token:"", chat_id:"" };
+
+/* Цены настоящие, сняты с альбома «Меню» сообщества (7 страниц).
+   Это меню зала. Банкетное меню у кафе отдельное и не опубликовано. */
+const MENU = [
+  { t:"Холодные закуски", items:[
+    { n:"Тарелка мясная", g:"180 г", d:"грудка индейки, буженина, язык говяжий, рулет куриный", p:500 },
+    { n:"Тарелка рыбная", g:"100 г", d:"форель с/с, рыба масляная, лимон, маслины, зелень", p:650 },
+    { n:"Язык говяжий", g:"120 г", d:"с горчичным соусом", p:650 },
+    { n:"Тар-тар из лосося", g:"150 г", d:"форель, огурец, красный лук, соус, хлеб", p:600 },
+    { n:"Сырная тарелка с мёдом", g:"150 г", d:"", p:700 },
+    { n:"Закуска «Погребок»", g:"250 г", d:"соленья в ассортименте", p:450 },
+    { n:"Рулеты из баклажан", g:"150 г", d:"", p:450 },
+    { n:"Тарелка овощная", g:"180 г", d:"помидоры, огурцы, перец болгарский", p:300 },
+    { n:"Тарелка фруктовая", g:"300 г", d:"", p:400 }
+  ]},
+  { t:"Салаты", items:[
+    { n:"Тёплый с телятиной", g:"200 г", d:"вырезка говяжья, огурец маринованный, айсберг, черри, пармезан", p:550 },
+    { n:"Цезарь с креветкой", g:"200 г", d:"креветки, айсберг, пармезан, черри, перепелиное яйцо", p:500 },
+    { n:"Цезарь с курицей", g:"200 г", d:"филе куриное, айсберг, пармезан, черри", p:450 },
+    { n:"Бриз", g:"200 г", d:"форель, креветка, айсберг, сыр бри, апельсин, кунжут", p:600 },
+    { n:"Жемчужина", g:"180 г", d:"креветки, кальмар, форель, айсберг, маслины, черри", p:600 },
+    { n:"Мечта", g:"200 г", d:"филе куриное, помидор, айсберг, картофель пай, соус цезарь", p:400 },
+    { n:"Греческий", g:"180 г", d:"томат, огурец, перец, айсберг, фета, маслины", p:400 },
+    { n:"Из хрустящих баклажан", g:"200 г", d:"баклажан, помидор, айсберг, фета, гранат", p:430 }
+  ]},
+  { t:"Супы", items:[
+    { n:"Уха императорская", g:"350 мл", d:"лосось, картофель, морковь, лук красный, черри, зелень", p:530 },
+    { n:"Хашлама с говядиной", g:"400 г", d:"говядина, картофель, перец, помидор, лук, зелень", p:700 },
+    { n:"Хашлама с бараниной", g:"400 г", d:"", p:650 },
+    { n:"Солянка сборная", g:"350 мл", d:"", p:350 },
+    { n:"Суп харчо", g:"350 мл", d:"", p:450 },
+    { n:"Суп-лапша с курицей", g:"350 мл", d:"", p:250 }
+  ]},
+  { t:"Горячие блюда", items:[
+    { n:"Филе форели в соусе терияки", g:"280 г", d:"брокколи, фасоль стручковая, чеснок", p:1000 },
+    { n:"Долма с говядиной", g:"250 г", d:"фарш говяжий, рис, лист винограда, соус чесночный", p:600 },
+    { n:"Оджахури", g:"320 г", d:"свинина, картофель, баклажаны, томат, лук", p:530 },
+    { n:"Жаркое по-домашнему в горшочке", g:"300 г", d:"свинина, картофель, перец, сыр, лаваш", p:400 },
+    { n:"Француженка", g:"320 г", d:"филе курицы, картофель, сливки, икра лососевая, черри", p:400 },
+    { n:"Паста с креветками", g:"270 г", d:"паста, креветки, перец, сливки, пармезан", p:500 },
+    { n:"Паста карбонара", g:"270 г", d:"бекон, перец, сливки, чеснок, пармезан", p:400 },
+    { n:"Пельмени говяжьи", g:"240/30 г", d:"", p:500 },
+    { n:"Пельмени домашние", g:"240/30 г", d:"", p:400 }
+  ]},
+  { t:"Блюда на мангале", items:[
+    { n:"Дорадо на гриле", g:"300 г", d:"", p:1200 },
+    { n:"Стейк форели на гриле", g:"200/30 г", d:"", p:1000 },
+    { n:"Шашлык из свиной шеи", g:"200 г", d:"", p:550 },
+    { n:"Люля-кебаб из говядины", g:"150 г", d:"", p:500 },
+    { n:"Шашлык свинина", g:"250 г", d:"", p:420 },
+    { n:"Шашлык из филе бедра цыплёнка", g:"200 г", d:"", p:400 },
+    { n:"Крылышки куриные с картофелем фри", g:"300 г", d:"", p:400 },
+    { n:"Люля-кебаб из курицы", g:"150 г", d:"", p:350 },
+    { n:"Овощи на гриле", g:"200 г", d:"", p:400 },
+    { n:"Шампиньоны на гриле", g:"200 г", d:"", p:400 }
+  ]},
+  { t:"Гарниры и к пиву", items:[
+    { n:"Пивная тарелка", g:"450 г", d:"картофель фри, кольца кальмара, луковые кольца, гренки", p:550 },
+    { n:"Кольца кальмара в панировке", g:"130 г", d:"с чесночным соусом", p:300 },
+    { n:"Луковые кольца", g:"130 г", d:"с чесночным соусом", p:300 },
+    { n:"Наггетсы", g:"130 г", d:"", p:270 },
+    { n:"Картофель фри", g:"150 г", d:"", p:200 },
+    { n:"Картофель запечённый под сыром", g:"150 г", d:"", p:160 },
+    { n:"Картофель по-деревенски", g:"150 г", d:"", p:150 },
+    { n:"Гренки из бородинского хлеба", g:"130 г", d:"с чесноком", p:150 }
+  ]},
+  { t:"Выпечка и десерты", items:[
+    { n:"Хачапури пеновани", g:"450 г", d:"", p:390 },
+    { n:"Хачапури по-мегрельски", g:"450 г", d:"", p:390 },
+    { n:"Хачапури по-аджарски", g:"350 г", d:"", p:360 },
+    { n:"Хачапури на мангале", g:"230 г", d:"", p:350 },
+    { n:"Торт медовик", g:"1 шт", d:"", p:270 },
+    { n:"Чизкейк", g:"1 шт", d:"", p:270 },
+    { n:"Штрудель фруктовый с мороженым", g:"250 г", d:"", p:270 },
+    { n:"Блинчики", g:"2 шт", d:"сметана, сгущёнка или мёд", p:150 },
+    { n:"Лаваш", g:"1 шт", d:"", p:10 },
+    { n:"Хлеб белый или серый", g:"1 шт", d:"", p:15 }
+  ]},
+  { t:"Напитки", items:[
+    { n:"Морс клюквенный", g:"1 л", d:"", p:400 },
+    { n:"Сок в ассортименте", g:"1 л", d:"", p:400 },
+    { n:"Боржоми", g:"0,5 л", d:"", p:350 },
+    { n:"Коктейль клубничный", g:"350 г", d:"", p:330 },
+    { n:"Коктейль банановый", g:"350 г", d:"", p:300 },
+    { n:"Кока-кола, фанта, спрайт", g:"0,5 л", d:"", p:200 },
+    { n:"Чай в чайнике с добавками", g:"0,9 л", d:"мята, мелисса, чабрец или бергамот", p:200 },
+    { n:"Бон-Аква", g:"0,5 л", d:"газ или негаз", p:150 },
+    { n:"Кофе капучино", g:"200 мл", d:"", p:160 }
+  ]},
+  { t:"Бар", items:[
+    { n:"Просекко брют", g:"750 мл", d:"", p:3500 },
+    { n:"Киндзмараули", g:"750 мл", d:"п/сл красное, Грузия", p:2500 },
+    { n:"Аристов Пино Гриджо", g:"750 мл", d:"белое сухое, Россия", p:2250 },
+    { n:"Саперави", g:"750 мл", d:"красное сухое, Грузия", p:2000 },
+    { n:"Алазанская долина", g:"750 мл", d:"белое или красное п/сл", p:2000 },
+    { n:"Абрау-Дюрсо игристое", g:"750 мл", d:"белое п/сл, Россия", p:1700 },
+    { n:"Санто Стефано", g:"750 мл", d:"белое п/сл, Россия", p:1200 },
+    { n:"Водка НЕРПА Байкал", g:"500 мл", d:"", p:2000 },
+    { n:"Водка Царская Ледяная", g:"500 мл", d:"", p:1600 },
+    { n:"Пина Колада", g:"200 мл", d:"ром белый, ликёр кокосовый, водка, сок", p:400 },
+    { n:"Корона Экстра", g:"350 мл", d:"", p:400 },
+    { n:"Крушовице", g:"450 мл", d:"тёмное или светлое", p:250 }
+  ]}
+];
+
+const SCENES = {
+  wed:{ lab:"Повод · свадьба", t:"Свадьба", img:"img/hall.jpg",
+    p:"Зал накрывают с утра, рассадка по схеме, танцпол в центре. Караоке и музыкальное сопровождение по желанию.",
+    l:[["Рассадка","по схеме"],["Танцпол","есть"],["Караоке","по желанию"],["Свой ведущий","можно"]] },
+  corp:{ lab:"Повод · корпоратив", t:"Корпоратив", img:"img/grill.jpg",
+    p:"Отдел целиком или вся компания. Мангал работает, поэтому горячее можно подавать волнами, а не разом.",
+    l:[["Формат","банкет или фуршет"],["Мангал","работает"],["Пятница и суббота","до 02:00"],["Счёт","один на компанию"]] },
+  grad:{ lab:"Повод · выпускной", t:"Выпускной", img:"img/fish.jpg",
+    p:"Класс или параллель. Детское меню и безалкогольный стол собираются отдельно, родители сидят своим столом.",
+    l:[["Класс целиком","да"],["Безалкогольный стол","да"],["Стол родителей","отдельно"],["Фотозона","обсуждается"]] },
+  kids:{ lab:"Повод · детский праздник", t:"Детский праздник", img:"img/hall.jpg",
+    p:"День рождения с аниматором или выпускной детского сада. Меню проще, порции меньше, время раньше.",
+    l:[["Время","дневное"],["Порции","детские"],["Аниматор","свой или подскажем"],["Торт","можно свой"]] }
+};
+
+const $ = s => document.querySelector(s);
+const cart = new Map();
+let guests = 20, occ = "wed";
+
+function scene(){
+  const s = SCENES[occ];
+  $("#scLab").textContent = s.lab;
+  $("#scTtl").textContent = s.t;
+  $("#scTxt").textContent = s.p;
+  $("#scList").innerHTML = s.l.map(([a,b]) => `<li>${a}<b>${b}</b></li>`).join("");
+  $("#scImg").style.backgroundImage = `url(${s.img})`;
+  $("#fo").value = s.t;
+}
+
+$("#occ").addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  occ = b.dataset.k;
+  document.querySelectorAll("#occ button").forEach(x => x.setAttribute("aria-pressed", x.dataset.k === occ));
+  scene();
+});
+
+function menu(){
+  $("#menu").innerHTML = MENU.map((g, gi) => `
+    <div class="grp">
+      <h3>${g.t}</h3>
+      ${g.items.map((it, ii) => {
+        const k = gi + "_" + ii, q = cart.get(k)?.q || 0;
+        return `<div class="it ${q?'on':''}">
+          <div class="nm"><b>${it.n}</b><span>${[it.g, it.d].filter(Boolean).join(" · ")}</span></div>
+          <span class="pr">${it.p.toLocaleString('ru')} ₽</span>
+          ${q ? `<span class="qty"><button class="add" data-k="${k}" data-d="-1">−</button><b>${q}</b><button class="add" data-k="${k}" data-d="1">+</button></span>`
+              : `<button class="add" data-k="${k}" data-d="all" aria-label="Добавить на всех">+</button>`}
+        </div>`;
+      }).join("")}
+    </div>`).join("");
+}
+
+function total(){
+  let s = 0, n = 0;
+  cart.forEach(v => { s += v.q * v.it.p; n += 1; });
+  $("#tot").textContent = s.toLocaleString('ru') + " ₽";
+  $("#per").textContent = s ? "по " + Math.round(s / guests).toLocaleString('ru') + " ₽ на гостя" : "выберите блюда";
+  $("#go").disabled = s === 0;
+  $("#rows").innerHTML = n
+    ? [...cart.values()].slice(0, 6).map(v => `<div><span>${v.it.n}</span><b>${v.q} × ${v.it.p}</b></div>`).join("")
+      + (n > 6 ? `<div><span>и ещё позиций</span><b>${n - 6}</b></div>` : "")
+    : `<div><span>Блюд не выбрано</span><b>—</b></div>`;
+}
+
+$("#menu").addEventListener("click", e => {
+  const b = e.target.closest(".add"); if(!b) return;
+  const k = b.dataset.k, [gi, ii] = k.split("_").map(Number);
+  const it = MENU[gi].items[ii];
+  const cur = cart.get(k)?.q || 0;
+  const next = b.dataset.d === "all" ? guests : cur + Number(b.dataset.d);
+  if(next <= 0) cart.delete(k); else cart.set(k, { q:next, it });
+  menu(); total();
+});
+
+$("#gm").addEventListener("click", () => { guests = Math.max(5, guests - 5); $("#gN").textContent = guests; total(); });
+$("#gp").addEventListener("click", () => { guests = Math.min(150, guests + 5); $("#gN").textContent = guests; total(); });
+$("#go").addEventListener("click", () => { $("#fg").value = guests; $("#req").scrollIntoView(); });
+
+$("#send").addEventListener("click", () => {
+  let s = 0; cart.forEach(v => s += v.q * v.it.p);
+  const n = $("#fn").value.trim();
+  $("#dTtl").textContent = n ? n + ", заявка принята" : "Заявка принята";
+  $("#dRecap").innerHTML = `
+    <div><span>Дата</span><b>${$("#fd").value || "уточним"}</b></div>
+    <div><span>Повод</span><b>${$("#fo").value}</b></div>
+    <div><span>Гостей</span><b>${$("#fg").value.trim() || guests}</b></div>
+    <div><span>Блюд в столе</span><b>${cart.size}</b></div>
+    <div><span>Сумма стола</span><b>${s.toLocaleString('ru')} ₽</b></div>
+    <div><span>Телефон</span><b>${$("#fp").value.trim() || "не указан"}</b></div>`;
+  $("#dlg").showModal();
+});
+
+scene(); menu(); total();
+</script>
+</body>
+</html>
